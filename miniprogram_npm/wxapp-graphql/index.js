@@ -27,14 +27,10 @@ var GraphQL = function(obj, retObj) {
 
     retObj = retObj || false;
 
-    let header = {};
+    let header = undefined;
 
-    if (typeof obj.header === 'function') {
-      header = obj.header();
-    }
-
-    if (typeof obj.header === 'object') {
-      header = obj.header;
+    if (typeof obj.header != 'function' && typeof obj.header != 'object') {
+      throw 'header必须是function或者object'
     }
 
     if(retObj) {
@@ -48,7 +44,7 @@ var GraphQL = function(obj, retObj) {
                             query: queryObj.query,
                             variables: queryObj.variables
                         }),
-                        header: queryObj.header || header,
+                        header: queryObj.header || (typeof obj.header === 'function' ? obj.header() : obj.header),
                         complete: function(res) {
                             responseHandler(resolve, reject, res,obj.errorHandler);
                         }
@@ -65,7 +61,7 @@ var GraphQL = function(obj, retObj) {
                             query: mutateObj.mutation,
                             variables: mutateObj.variables
                         }),
-                        header: mutateObj.header || header,
+                        header: mutateObj.header || (typeof obj.header === 'function' ? obj.header() : obj.header),
                         complete: function(res) {
                             responseHandler(resolve, reject, res);
                         }
@@ -86,7 +82,7 @@ var GraphQL = function(obj, retObj) {
                 data: JSON.stringify(_obj.body),
                 success: _obj.success,
                 fail: _obj.fail,
-                header: _obj.header || header,
+                header: _obj.header || (typeof obj.header === 'function' ? obj.header() : obj.header),
                 complete: _obj.complete
             });
         }
