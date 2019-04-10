@@ -1,0 +1,51 @@
+<!--pages/h2-order/registered-order/registered-order.wxml-->
+<view class='page'>
+
+  <view class='bar'>
+    <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <view class='picker'>
+        <view></view>
+        <view>{{date?date:'选择工作日期'}}</view>
+        <view class='picker_icon'>
+          <wux-icon type='md-arrow-dropdown' />
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class='page'>
+    <wux-white-space body-style="height:120rpx" />
+    <view class='list'>
+
+      <view class="list_item" wx:for="{{list}}" wx:key="" bindtap='goOrderInfo' data-orderid='{{item.originorder.orderid}}'>
+        <view class="list_bar {{item.ptorderstate===2?'card_N_bg':''}}">
+          <view class='list_bar_l'>
+            <image src="/images/order-avatar.png" />
+            <text>{{item.originorder.occupation}}</text>
+          </view>
+          <view class='list_bar_r'>
+            <text>{{item.postorder.salary}}元/时</text>
+            <wux-icon type="ios-arrow-forward" size='20' />
+          </view>
+        </view>
+        <view class="list_res n32 {{item.ptorderstate===2?'card_N':''}}">
+          <view class="list_res_date">
+            <wux-cell thumb="/images/hotel-calendar.png" title="{{item.modifiedorder[0].date||item.originorder.date}} {{item.modifiedorder[0].time||item.originorder.time}}" hover-class="none"></wux-cell>
+            <text class='r' wx:if="{{item.modifiedorder.length>0}}">时间变更</text>
+          </view>
+          <wux-cell thumb="/images/hotel-company.png" title="{{item.hotel.hotelname}}" hover-class="none" />
+          <view class="list_tip {{item.ptorderstate===2?'card_N':''}}">{{item.hotel.hoteladdress}}</view>
+          <view class='list_reason r' wx:if="{{item.ptorderstate===2}}">时间变更不参加</view>
+          <view class='list_reason r' wx:elif="{{item.ptorderstate===3}}">被顾问拒绝</view>
+          <view class='list_reason_btn' wx:elif="{{item.ptorderstate===1}}">
+            <button bindtap='doOut' data-orderid='{{item.originorder.orderid}}'>不去了</button>
+            <button bindtap='doIn' data-orderid='{{item.originorder.orderid}}'>继续参加</button>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <wux-white-space body-style="height:120rpx" />
+  </view>
+
+</view>

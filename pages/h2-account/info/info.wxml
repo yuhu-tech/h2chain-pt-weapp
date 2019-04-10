@@ -1,0 +1,70 @@
+<!--pages/h2-account/info/info.wxml-->
+<toptip id="inToptip" />
+
+<view class='page'>
+  <form bindsubmit='formSubmit'>
+    <view class='form'>
+      <view class='top'>
+        <view class='ipt'>
+          <label>姓名（必填）</label>
+          <input name="name" placeholder='请输入您的姓名' value='{{qlInfo.name}}' />
+        </view>
+        <wux-white-space body-style='height:60rpx' />
+        <view class='phone'>
+          <label>手机号（必填）</label>
+          <button wx:if="{{!qlInfo.phonenumber}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">授权获取手机号</button>
+          <view wx:else>{{qlInfo.phonenumber}}</view>
+        </view>
+        <wux-white-space body-style='height:60rpx' />
+        <view class='ipt'>
+          <label>身份证号（必填）</label>
+          <input name="id" type='idcard' placeholder='请输入您的身份证号' value='{{qlInfo.idnumber}}' />
+        </view>
+        <wux-white-space body-style='height:60rpx' />
+        <view class='rd'>
+          <label class='rd_label'>性别（必填）</label>
+          <radio-group name="gender" class="radio-group" bindchange="radioChangeGender">
+            <label class="radio" wx:for="{{gender}}" wx:key="">
+              <radio value="{{item.value}}" color='#f05d70' checked="{{item.value===(qlInfo.gender===1?1:2)}}" /> {{item.name}}
+            </label>
+          </radio-group>
+        </view>
+        <wux-white-space body-style='height:60rpx' />
+        <view class='rd'>
+          <label class='rd_label'>您的身份</label>
+          <radio-group name="identity" class="radio-group" bindchange="radioChangeId">
+            <label class="radio" wx:for="{{id}}" wx:key="">
+              <radio value="{{item.value}}" color='#f05d70' checked="{{item.value===(qlInfo.gender===1?1:2)}}" /> {{item.name}}
+            </label>
+          </radio-group>
+        </view>
+        <wux-white-space body-style='height:60rpx' />
+        <view class='ipt_group'>
+          <view class='ipt_group_item'>
+            <label>身高</label>
+            <view class='ipt_group_item_ipt'>
+              <!-- <input name="height" placeholder='请输入您的身高' type='number' /> -->
+              <picker name="height" bindchange="bindPickerChangeH" value="{{index_h}}" range="{{range_h}}">
+                <view class="{{index_h?'':'nc8'}}">{{index_h?range_h[index_h]:'请选择您的身高'}}</view>
+              </picker>
+              <label>cm</label>
+            </view>
+          </view>
+          <view class='ipt_group_item'>
+            <label>体重</label>
+            <view class='ipt_group_item_ipt'>
+              <!-- <input name="weight" placeholder='请输入您的体重' type='number' /> -->
+              <picker name="weight" bindchange="bindPickerChangeW" value="{{index_w}}" range="{{range_w}}">
+                <view class="{{index_w?'':'nc8'}}">{{index_w?range_w[index_w]:'请选择您的体重'}}</view>
+              </picker>
+              <label>kg</label>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='footer'>
+        <button form-type='submit'>确认</button>
+      </view>
+    </view>
+  </form>
+</view>

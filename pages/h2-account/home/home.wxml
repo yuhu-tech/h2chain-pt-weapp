@@ -1,0 +1,31 @@
+<!--pages/h2-account/home/home.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <wux-row>
+      <view class='info_card'>
+        <view>{{userInfo.nickName}}</view>
+        <image class='avatar' src="{{userInfo.avatarUrl}}"></image>
+      </view>
+    </wux-row>
+    <wux-row>
+      <wux-cell-group wx:if="{{qlInfo}}">
+        <wux-cell title="姓名" extra="{{qlInfo.name||'-'}}" hover-class="none" />
+        <view class='bd_btm' />
+        <wux-cell title="手机" extra="{{qlInfo.phonenumber||'-'}}" hover-class="none" />
+      </wux-cell-group>
+    </wux-row>
+    <wux-white-space body-style='height:15rpx' />
+    <view class='shadow'>
+      <wux-row>
+        <wux-cell-group>
+          <wux-cell thumb="/images/home-adviser.png" title="个人信息" bind:click="goInfo" extra="{{qlInfo?'编辑':'去完善'}}" />
+          <view class='bd_btm' />
+          <wux-cell thumb="/images/home-history.png" title="工作历史" isLink url="/pages/h2-order/history-order/history-order" />
+        </wux-cell-group>
+      </wux-row>
+    </view>
+    <!-- <view class='logout w'>
+      <text bindtap='doLogout'>退出登录</text>
+    </view> -->
+  </view>
+</view>

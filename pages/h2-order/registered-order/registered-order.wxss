@@ -1,0 +1,145 @@
+/* pages/h2-order/registered-order/registered-order.wxss */
+
+page {
+  background-color: #f0f0f0;
+}
+
+/* bar */
+
+.bar {
+  padding: 20rpx;
+  background-color: #ffc167;
+  box-shadow: 0 0 20rpx rgba(255, 193, 103, 1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.picker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #969696;
+  background-color: #fff;
+  border-radius: 32rpx;
+  padding: 0 20rpx;
+}
+
+.picker_icon {
+  color: #ff9c34;
+}
+
+/* list */
+
+.list {
+  padding: 25rpx 30rpx;
+}
+
+.list_item {
+  box-shadow: 0 0 20rpx rgba(150, 150, 150, 0.5);
+  border-radius: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.list_bar {
+  padding: 10rpx 20rpx 10rpx 10rpx;
+  background-color: #ffc167;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  border-radius: 40rpx 40rpx 0 0;
+}
+
+.list_bar_l {
+  display: flex;
+  align-items: center;
+}
+
+.list_bar_l text {
+  font-weight: bold;
+}
+
+.list_bar_l image {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+  margin-right: 25rpx;
+}
+
+.list_bar_r {
+  display: flex;
+  align-items: center;
+}
+
+.list_bar_r text {
+  color: #fff;
+  margin-right: 25rpx;
+}
+
+/* list_res */
+
+.list_res {
+  background-color: #fff;
+  border-radius: 0 0 40rpx 40rpx;
+}
+
+.list_res_date {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.list_res_date text {
+  padding-right: 30rpx;
+}
+
+.wux-cell {
+  padding: 20rpx 20rpx 0 !important;
+}
+
+.wux-cell::after {
+  border-bottom: none !important;
+  padding: 20rpx 20rpx 0 !important;
+}
+
+.wux-cell__thumb {
+  margin-right: 20rpx !important;
+}
+
+.list_tip {
+  padding: 10rpx 0 25rpx 80rpx;
+  font-size: 26rpx;
+  color: #969696;
+}
+
+.list_reason {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 25rpx;
+}
+
+.list_reason_btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20rpx 25rpx;
+}
+
+.list_reason_btn button {
+  height: 60rpx;
+  width: 200rpx;
+  margin: 0;
+  margin-left: 30rpx;
+}
+
+/* card_N */
+
+.card_N {
+  color: #c8c8c8;
+}
+
+.card_N_bg {
+  background-color: #c8c8c8;
+}

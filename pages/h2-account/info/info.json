@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wux-white-space": "wux-weapp/white-space",
+    "toptip": "/components/toptip/toptip"
+  },
+  "navigationBarTitleText": "个人信息"
+}

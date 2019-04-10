@@ -1,0 +1,98 @@
+<!--pages/h2-order/list-order-info/list-order-info.wxml-->
+<view class="page">
+  <view class="page__bd">
+
+    <swiper indicator-dots autoplay indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff">
+      <block wx:for="{{cover}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class='card'>
+      <view class='card_bar'>
+        <view class='card_bar_l'>
+          <image src='/images/order-avatar.png' />
+          <text>{{order.originorder.occupation}}</text>
+        </view>
+        <view class='card_bar_r'>
+          <text>{{order.postorder.salary}}元/时</text>
+        </view>
+      </view>
+
+
+      <view class='card_date n200' wx:if="{{order.modifiedorder.length>0}}">
+        <view class='card_date_flex'>
+          <view class='bd_box'>
+            <text class='card_date_l'>{{order.originorder.date}}</text>
+            <text>{{order.originorder.time}}</text>
+            <view class='top_card_cen_bd' />
+          </view>
+          <view class='r'>时间变更</view>
+        </view>
+      </view>
+
+      <view class='card_date'>
+        <text class='card_date_l'>{{order.modifiedorder[0].date||order.originorder.date}}</text>
+        <text>{{order.modifiedorder[0].time||order.originorder.time}}</text>
+      </view>
+
+      <view class='card_count'>
+        <text class='card_count_l'>男{{order.maleyet}}/{{order.modifiedorder[0].changedmale||order.originorder.male}}</text>
+        <text>女{{order.femaleyet}}/{{order.modifiedorder[0].changedfemale||order.originorder.female}}</text>
+      </view>
+      <view class='card_name'>
+        <text class='card_name_l'>{{order.adviser.companyname||'-'}}</text>
+        <view class='card_name_name'>{{order.adviser.name||'-'}}</view>
+        <view class='hotel_phone_img' bindtap='doCall'>
+          <image src='/images/icon-phone.png' />
+        </view>
+      </view>
+      <view class='card_btn'>
+        <button class='card_btn_share' open-type='share' wx:if="{{item.state!==2}}">
+          <text>邀请好友</text>
+          <image src='/images/icon-wechat.png' />
+        </button>
+        <button bindtap='goRegister' wx:if="{{item.ptorderstate===0}}">立即报名</button>
+      </view>
+    </view>
+
+    <view class='info'>
+      <wux-divider show-text="{{ false }}" />
+      <view class='hotel_info'>酒店信息</view>
+      <wux-cell thumb="/images/hotel-company.png" title="{{order.hotel.hotelname||'-'}}" hover-class="none"></wux-cell>
+      <view class='nav'>
+        <wux-cell thumb="/images/hotel-location.png" title="{{order.hotel.hoteladdress||'-'}}" hover-class="none"></wux-cell>
+        <button class='nav_btn' bindtap='openLocation'>
+          <text>导航</text>
+          <image src='/images/icon-nav.png' />
+        </button>
+      </view>
+      <wux-cell thumb="/images/hotel-phone.png" title="{{order.hotel.hotelphone||'-'}}" hover-class="none"></wux-cell>
+
+      <wux-divider show-text="{{ false }}" />
+      <view class='hotel_info'>工作要求</view>
+      <view class='hotel-info_item n200'>1.{{order.postorder.attention||'-'}}</view>
+      <wux-white-space body-style='height:30rpx' />
+      <view class='hotel_info'>工作简介</view>
+      <view class='hotel-info_item n200'>1.{{order.postorder.workcontent||'-'}}</view>
+
+      <wux-divider show-text="{{ false }}" />
+      <view class='hotel_info'>酒店简介</view>
+      <view class='hotel-intro n200'>{{order.hotel.hotelintroduction||'-'}}</view>
+
+      <wux-divider show-text="{{ false }}" />
+      <view class='hotel_info'>人力资源公司简介</view>
+      <wux-cell thumb="/images/hotel-company.png" title="{{order.adviser.companyname||'-'}}" hover-class="none"></wux-cell>
+      <wux-cell thumb="/images/hotel-adviser.png" title="{{order.adviser.name||'-'}}" hover-class="none" />
+      <!-- <view class='hotel_phone'>
+        <wux-cell thumb="/images/hotel-adviser.png" title="水君" hover-class="none" />
+        <image class='hotel_phone_img' src='/images/order-phone.png' bindtap='doCall' />
+      </view> -->
+      <view class='hotel-intro n200'>{{order.adviser.introduction||'-'}}</view>
+    </view>
+
+  </view>
+  <wux-white-space body-style='height:100rpx' />
+</view>

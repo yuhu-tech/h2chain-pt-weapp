@@ -1,0 +1,42 @@
+<!--pages/h2-order/share/share.wxml-->
+<view class="page">
+
+  <view>
+    <swiper indicator-dots autoplay indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff">
+      <block wx:for="{{banner}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='card'>
+      <view class='card_bar'>
+        <view class='card_bar_l'>
+          <image src='/images/order-avatar.png' />
+          <text>职位名称</text>
+        </view>
+        <view class='card_bar_r'>
+          <text>20元/时</text>
+        </view>
+      </view>
+      <view class='card_date'>
+        <text class='card_date_l'>2019-12-29</text>
+        <text>8:00~14:00</text>
+      </view>
+      <view class='card_count'>
+        <text class='card_count_l'>男10/20</text>
+        <text>女10/20</text>
+      </view>
+      <view class='card_name'>
+        <text class='card_name_l'>人力资源公司全称</text>
+        <view>水君</view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <button open-type='share'>确认分享</button>
+    <wux-white-space body-style='height:65rpx' />
+  </view>
+
+</view>

@@ -1,0 +1,25 @@
+<!--pages/h2-order/registered-success/registered-success.wxml-->
+<image class='page_bg' mode='widthFix' src='/images/bg-success.png' />
+
+<view class='page_text'>
+  <view class='page_text_box'>报名成功</view>
+</view>
+
+<view class='page_btn'>
+  <view class='page_btn_box'>
+    <button open-type='share'>
+      <view class='page_btn_box_btn'>
+        <text>邀请好友</text>
+        <image src='/images/icon-wechat.png' />
+      </view>
+    </button>
+  </view>
+</view>
+
+<view class='page_btm'>
+  <view class='page_btm_box'>
+    <text>我们已经收到您的报名信息</text>
+    <text>请在工作前半小时到达</text>
+    <button bindtap='goBack'>确认</button>
+  </view>
+</view>

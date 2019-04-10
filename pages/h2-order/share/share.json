@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wux-white-space": "wux-weapp/white-space"
+  },
+  "navigationBarTitleText": "分享订单"
+}

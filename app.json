@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/h2-account/auth/auth",
+    "pages/h2-account/info/info",
+    "pages/h2-account/home/home",
+    "pages/h2-order/list-order/list-order",
+    "pages/h2-order/list-order-info/list-order-info",
+    "pages/h2-order/registered-order/registered-order",
+    "pages/h2-order/registered-success/registered-success",
+    "pages/h2-order/history-order/history-order",
+    "pages/h2-order/share/share"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "h2chain-pt",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/h2-order/list-order/list-order",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/h2-order/registered-order/registered-order",
+        "text": "已报名"
+      },
+      {
+        "pagePath": "pages/h2-account/home/home",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于检索附近的订单"
+    }
+  }
+}

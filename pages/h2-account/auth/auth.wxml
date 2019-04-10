@@ -1,0 +1,7 @@
+<!--pages/h2-account/auth/auth.wxml-->
+<view class='page'>
+  <view class='page_bd'>
+    <image src='/images/logo.png' />
+    <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">微信授权登录</button>
+  </view>
+</view>

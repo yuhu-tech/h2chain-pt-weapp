@@ -1,0 +1,75 @@
+/* pages/h2-order/registered-success/registered-success.wxss */
+
+/* background image */
+
+.page_bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* center */
+
+.page_text {
+  position: fixed;
+  top: 390rpx;
+  width: 100%;
+}
+
+.page_text_box {
+  display: flex;
+  justify-content: center;
+  font-size: 36rpx;
+}
+
+.page_btn {
+  position: fixed;
+  top: 675rpx;
+  width: 100%;
+}
+
+.page_btn_box {
+  display: flex;
+  justify-content: center;
+  font-size: 36rpx;
+}
+
+.page_btn_box button {
+  height: 60rpx;
+  width: 250rpx;
+}
+
+.page_btn_box_btn {
+  display: flex;
+  align-items: center;
+}
+
+.page_btn_box_btn image {
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 10rpx;
+}
+
+/* bottom */
+
+.page_btm {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.page_btm_box {
+  padding: 0 40rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.page_btm_box button {
+  margin: 50rpx 0 0;
+  height: 100rpx;
+  width: 100%;
+  border-radius: 50rpx;
+}
