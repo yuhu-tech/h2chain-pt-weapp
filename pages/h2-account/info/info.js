@@ -194,9 +194,7 @@ Page({
             weight: ${Number(this.data.range_w[this.data.index_w] || 0)}
             status: ${Number(e.detail.value.identity||0)}
           }
-        ){
-          error
-        }
+        )
       }`
     }).then((res) => {
       console.log('success', res)

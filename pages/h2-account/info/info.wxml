@@ -34,7 +34,7 @@
           <label class='rd_label'>您的身份</label>
           <radio-group name="identity" class="radio-group" bindchange="radioChangeId">
             <label class="radio" wx:for="{{id}}" wx:key="">
-              <radio value="{{item.value}}" color='#f05d70' checked="{{item.value===(qlInfo.gender===1?1:2)}}" /> {{item.name}}
+              <radio value="{{item.value}}" color='#f05d70' checked="{{item.value===(qlInfo.status===1?1:2)}}" /> {{item.name}}
             </label>
           </radio-group>
         </view>
@@ -43,9 +43,8 @@
           <view class='ipt_group_item'>
             <label>身高</label>
             <view class='ipt_group_item_ipt'>
-              <!-- <input name="height" placeholder='请输入您的身高' type='number' /> -->
               <picker name="height" bindchange="bindPickerChangeH" value="{{index_h}}" range="{{range_h}}">
-                <view class="{{index_h?'':'nc8'}}">{{index_h?range_h[index_h]:'请选择您的身高'}}</view>
+                <view class="{{index_h?'':'nc8'}}">{{index_h!==-1?range_h[index_h]:'请选择您的身高'}}</view>
               </picker>
               <label>cm</label>
             </view>
@@ -53,9 +52,8 @@
           <view class='ipt_group_item'>
             <label>体重</label>
             <view class='ipt_group_item_ipt'>
-              <!-- <input name="weight" placeholder='请输入您的体重' type='number' /> -->
               <picker name="weight" bindchange="bindPickerChangeW" value="{{index_w}}" range="{{range_w}}">
-                <view class="{{index_w?'':'nc8'}}">{{index_w?range_w[index_w]:'请选择您的体重'}}</view>
+                <view class="{{index_w?'':'nc8'}}">{{index_w!==-1?range_w[index_w]:'请选择您的体重'}}</view>
               </picker>
               <label>kg</label>
             </view>

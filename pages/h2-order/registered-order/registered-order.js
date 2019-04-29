@@ -119,28 +119,27 @@ Page({
       }`
     }).then((res) => {
       console.log('success', res);
+      let temp_change = []
+      let temp_normal = []
+      let temp_invalid = []
+      let temp_list = []
       for (let item of res.search) {
-        let temp = new Date(item.originorder.datetime * 1000)
-        let tempdate = `${util.formatTime(temp).slice(0, 10)}`
-        let tempHour = temp.getHours()
-        let tempMinutes = util.formatNumber(temp.getMinutes())
-        let tempTime = `${util.formatNumber(tempHour)}:${tempMinutes}~${util.formatNumber(tempHour + item.originorder.duration)}:${tempMinutes}`
-        item.originorder.date = tempdate
-        item.originorder.time = tempTime
-
+        util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
-          let temp = new Date(item.modifiedorder[0].changeddatetime * 1000)
-          let tempdate = `${util.formatTime(temp).slice(0, 10)}`
-          let tempHour = temp.getHours()
-          let tempMinutes = util.formatNumber(temp.getMinutes())
-          let tempTime = `${util.formatNumber(tempHour)}:${tempMinutes}~${util.formatNumber(tempHour + item.modifiedorder[0].changedduration)}:${tempMinutes}`
-          item.modifiedorder[0].date = tempdate
-          item.modifiedorder[0].time = tempTime
+          util.formatItemModify(item)
+        }
+        if (item.ptorderstate === 4) {
+          temp_change.push(item)
+        } else if (item.ptorderstate === 1 || item.ptorderstate === 3) {
+          temp_normal.push(item)
+        } else if (item.ptorderstate === 2 || item.ptorderstate === 5) {
+          temp_invalid.push(item)
         }
       }
+      temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
       wx.hideToast()
       this.setData({
-        list: res.search
+        list: temp_list
       })
     }).catch((error) => {
       console.log('fail', error);
@@ -199,22 +198,9 @@ Page({
     }).then((res) => {
       console.log('success', res);
       for (let item of res.search) {
-        let temp = new Date(item.originorder.datetime * 1000)
-        let tempdate = `${util.formatTime(temp).slice(0, 10)}`
-        let tempHour = temp.getHours()
-        let tempMinutes = util.formatNumber(temp.getMinutes())
-        let tempTime = `${util.formatNumber(tempHour)}:${tempMinutes}~${util.formatNumber(tempHour + item.originorder.duration)}:${tempMinutes}`
-        item.originorder.date = tempdate
-        item.originorder.time = tempTime
-
+        util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
-          let temp = new Date(item.modifiedorder[0].changeddatetime * 1000)
-          let tempdate = `${util.formatTime(temp).slice(0, 10)}`
-          let tempHour = temp.getHours()
-          let tempMinutes = util.formatNumber(temp.getMinutes())
-          let tempTime = `${util.formatNumber(tempHour)}:${tempMinutes}~${util.formatNumber(tempHour + item.modifiedorder[0].changedduration)}:${tempMinutes}`
-          item.modifiedorder[0].date = tempdate
-          item.modifiedorder[0].time = tempTime
+          util.formatItemModify(item)
         }
       }
       wx.hideToast()
@@ -253,14 +239,10 @@ Page({
   doIn: function(e) {
     gql.mutate({
       mutation: `mutation{
-        registerorder(
-          registerorder: {
-            orderid: "${e.currentTarget.dataset.orderid}"
-            register: 1
-          }
-        ) {
-          error
-        }
+        modifyptoforder(
+          orderid: "${e.currentTarget.dataset.orderid}"
+          ptstatus:3
+        )
       }`
     }).then(res => {
       wx.showToast({
@@ -286,14 +268,10 @@ Page({
   doOut: function(e) {
     gql.mutate({
       mutation: `mutation{
-        registerorder(
-          registerorder: {
-            orderid: "${e.currentTarget.dataset.orderid}"
-            register: 2
-          }
-        ) {
-          error
-        }
+        modifyptoforder(
+          orderid: "${e.currentTarget.dataset.orderid}"
+          ptstatus: 5
+        )
       }`
     }).then(res => {
       wx.showToast({

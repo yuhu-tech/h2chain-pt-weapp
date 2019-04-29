@@ -31,8 +31,8 @@
           <wux-cell thumb="/images/hotel-company.png" title="{{item.modifiedorder[0].date||item.originorder.date}} {{item.modifiedorder[0].time||item.originorder.time}}" hover-class="none"></wux-cell>
           <wux-cell thumb="/images/hotel-adviser.png" title="{{item.hotel.hotelname}}" hover-class="none" />
           <view class='list_tip n96'>{{item.hotel.hoteladdress}}</view>
-          <view class='list_reason r' wx:if="{{item.ptorderstate===2}}">时间变更无法参加</view>
-          <view class='list_reason r' wx:elif="{{item.ptorderstate===3}}">被顾问拒绝</view>
+          <view class='list_reason r' wx:if="{{item.ptorderstate===5}}">时间变更无法参加</view>
+          <view class='list_reason r' wx:elif="{{item.ptorderstate===2}}">被顾问拒绝</view>
         </view>
       </view>
     </view>

@@ -50,9 +50,8 @@
           </view>
         </view>
         <view class='list_line_2'>
-
-          <view wx:if="{{item.modifiedorder.length>0?(item.originorder.mode===0):(item.modifiedorder[0].changedmode===0)}}">
-            <text>{{item.countyet}}/{{item.modifiedorder[0].changedcount||item.originorder.count}}</text>
+          <view wx:if="{{item.modifiedorder.length>0?(item.modifiedorder[0].changedmode===0):(item.originorder.mode===0)}}">
+            <text>人数 {{item.countyet}}/{{item.modifiedorder[0].changedcount||item.originorder.count}}</text>
           </view>
           <view wx:else>
             <text class='list_line_2_male'>男 {{item.maleyet}}/{{item.modifiedorder[0].changedmale||item.originorder.male}}</text>

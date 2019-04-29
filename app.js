@@ -26,9 +26,6 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-              wx.switchTab({
-                url: '/pages/h2-order/list-order/list-order',
-              })
             }
           })
         }
