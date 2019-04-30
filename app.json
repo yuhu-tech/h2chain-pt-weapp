@@ -1,14 +1,14 @@
 {
   "pages": [
     "pages/h2-account/auth/auth",
+    "pages/h2-order/share/share",
     "pages/h2-account/info/info",
     "pages/h2-account/home/home",
     "pages/h2-order/list-order/list-order",
     "pages/h2-order/list-order-info/list-order-info",
     "pages/h2-order/registered-order/registered-order",
     "pages/h2-order/registered-success/registered-success",
-    "pages/h2-order/history-order/history-order",
-    "pages/h2-order/share/share"
+    "pages/h2-order/history-order/history-order"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -13,23 +13,28 @@
       <view class='card_bar'>
         <view class='card_bar_l'>
           <image src='/images/order-avatar.png' />
-          <text>职位名称</text>
+          <text>{{order.originorder.occupation}}</text>
         </view>
         <view class='card_bar_r'>
-          <text>20元/时</text>
+          <text>{{order.postorder.salary}}元/时</text>
         </view>
       </view>
       <view class='card_date'>
-        <text class='card_date_l'>2019-12-29</text>
-        <text>8:00~14:00</text>
+        <text class='card_date_l'>{{order.modifiedorder.length>0?order.modifiedorder.date:order.originorder.date}}</text>
+        <text>{{order.modifiedorder.length>0?order.modifiedorder.time:order.originorder.time}}</text>
       </view>
       <view class='card_count'>
-        <text class='card_count_l'>男10/20</text>
-        <text>女10/20</text>
+        <view wx:if="{{order.modifiedorder.length>0?(order.modifiedorder[0].changedmode===0):(order.originorder.mode===0)}}">
+          <text class='card_count_l'>人数 {{order.countyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedcount:order.originorder.count}}</text>
+        </view>
+        <view wx:else>
+          <text class='card_count_l'>男 {{order.maleyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedmale:order.originorder.male}}</text>
+          <text>女 {{order.femaleyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedfemale:order.originorder.female}}</text>
+        </view>
       </view>
       <view class='card_name'>
-        <text class='card_name_l'>人力资源公司全称</text>
-        <view>水君</view>
+        <text class='card_name_l'>{{order.adviser.companyname}}</text>
+        <view>{{order.adviser.name}}</view>
       </view>
     </view>
   </view>

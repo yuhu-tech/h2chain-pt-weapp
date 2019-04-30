@@ -18,7 +18,7 @@
     <view class='list'>
 
       <view class="list_item" wx:for="{{list}}" wx:key="" data-orderid='{{item.originorder.orderid}}'>
-        <view class="list_bar {{item.ptorderstate===2?'card_N_bg':''}}" bindtap='goOrderInfo'>
+        <view class="list_bar {{item.ptorderstate===2?'card_N_bg':''}}" bindtap='goOrderInfo' data-orderid='{{item.originorder.orderid}}'>
           <view class='list_bar_l'>
             <image src="/images/order-avatar.png" />
             <text>{{item.originorder.occupation}}</text>

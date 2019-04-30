@@ -74,7 +74,7 @@ Page({
       console.log('success', res);
       for (let item of res.search) {
         util.formatItemOrigin(item)
-        if (item.modifiedorder.length > 0) {
+        if (item.modifiedorder && item.modifiedorder.length > 0) {
           util.formatItemModify(item)
         }
       }
@@ -195,7 +195,7 @@ Page({
 
   goDetail: function(e) {
     wx.navigateTo({
-      url: `/pages/h2-order/list-order-info/list-order-info?orderid=${e.currentTarget.dataset.orderid}`,
+      url: `/pages/h2-order/list-order-info/list-order-info?orderid=${e.currentTarget.dataset.orderid}&history=history`,
     })
   }
 

@@ -22,7 +22,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      options: options
+    })
+    console.log('onload', this.data.options)
   },
 
   /**
@@ -40,6 +43,14 @@ Page({
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
+      })
+    }
+    console.log('onshow')
+    let isShare = wx.getStorageSync('share')
+    if (isShare==='share') {
+      console.log('share')
+      wx.navigateTo({
+        url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
       })
     }
     /* picker start */

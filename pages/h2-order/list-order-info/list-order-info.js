@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    history: '',
     orderid: 'default',
     order: ''
   },
@@ -18,7 +19,8 @@ Page({
   onLoad: function(options) {
     if (options.orderid) {
       this.setData({
-        orderid: options.orderid
+        orderid: options.orderid,
+        history: options.history
       })
     }
   },
@@ -34,9 +36,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    wx.setStorageSync('share', 'done')
     gql.query({
       query: `query{
         search(
+          ${this.data.history ==='history'?'state:2':''}
           orderid:"${this.data.orderid}"
         ){
           state
@@ -82,9 +86,11 @@ Page({
     }).then((res) => {
       console.log('success', res);
       util.formatItemOrigin(res.search[0])
-      if (res.search[0].modifiedorder.length > 0) {
+      if (res.search[0].modifiedorder && res.search[0].modifiedorder.length > 0) {
         util.formatItemModify(res.search[0])
       }
+      res.search[0].postorder.workcontent = decodeURI(res.search[0].postorder.workcontent)
+      res.search[0].postorder.attention = decodeURI(res.search[0].postorder.attention)
       this.setData({
         order: res.search[0]
       })

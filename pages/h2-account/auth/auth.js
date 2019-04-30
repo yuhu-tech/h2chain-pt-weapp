@@ -14,12 +14,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      options: options
+    })
+    console.log('auth', options)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          wx.switchTab({
-            url: '/pages/h2-order/list-order/list-order',
-          })
+          console.log(res)
+          if (this.data.options.adviser) {
+            console.log('check adviser')
+            wx.navigateTo({
+              url: `/pages/h2-order/share/share?orderid=${this.data.options.orderid}`,
+            })
+          } else {
+            console.log('check not adviser')
+            if (this.data.options.share) {
+              console.log('check share')
+              wx.setStorageSync('share', 'share')
+              wx.setStorageSync('orderid', this.data.options.orderid)
+            }
+            wx.switchTab({
+              url: `/pages/h2-order/list-order/list-order`,
+            })
+          }
         }
       }
     })
@@ -90,9 +108,24 @@ Page({
             }).then((res) => {
               console.log('success', res);
               wx.setStorageSync('token', res.login.token)
-              wx.switchTab({
-                url: '/pages/h2-order/list-order/list-order',
-              })
+
+              if (this.data.options.adviser) {
+                console.log('check adviser')
+                wx.navigateTo({
+                  url: `/pages/h2-order/share/share?orderid=${this.data.options.orderid}`,
+                })
+              } else {
+                console.log('check not adviser')
+                if (this.data.options.share) {
+                  console.log('check share')
+                  wx.setStorageSync('share', 'share')
+                  wx.setStorageSync('orderid', this.data.options.orderid)
+                }
+                wx.switchTab({
+                  url: `/pages/h2-order/list-order/list-order`,
+                })
+              }
+
             }).catch((error) => {
               console.log('fail', error);
             });
