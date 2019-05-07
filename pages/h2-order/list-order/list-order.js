@@ -280,7 +280,7 @@ Page({
 
   goOrderInfo: function(e) {
     wx.navigateTo({
-      url: `/pages/h2-order/list-order-info/list-order-info?orderid=${e.currentTarget.dataset.orderid}`,
+      url: `/pages/h2-order/list-order-info/list-order-info?orderid=${e.currentTarget.dataset.orderid}&register=0`,
     })
   },
 

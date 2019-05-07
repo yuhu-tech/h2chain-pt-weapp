@@ -59,7 +59,7 @@
           <text>邀请好友</text>
           <image src='/images/icon-wechat.png' />
         </button>
-        <button bindtap='goRegister' wx:if="{{item.ptorderstate===0}}">立即报名</button>
+        <button bindtap='goRegister' wx:if="{{order.ptorderstate===null}}">立即报名</button>
       </view>
     </view>
 

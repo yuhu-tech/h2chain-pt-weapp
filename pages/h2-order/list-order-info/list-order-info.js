@@ -9,6 +9,7 @@ Page({
    */
   data: {
     history: '',
+    register: '',
     orderid: 'default',
     order: ''
   },
@@ -20,7 +21,8 @@ Page({
     if (options.orderid) {
       this.setData({
         orderid: options.orderid,
-        history: options.history
+        history: options.history,
+        register: options.register
       })
     }
   },
@@ -41,6 +43,7 @@ Page({
       query: `query{
         search(
           ${this.data.history ==='history'?'state:2':''}
+          ${this.data.register ? `isregistered:${this.data.register}` : ''}
           orderid:"${this.data.orderid}"
         ){
           state
