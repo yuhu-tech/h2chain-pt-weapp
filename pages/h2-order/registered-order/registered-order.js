@@ -57,7 +57,77 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.showNavigationBarLoading();
+    gql.query({
+      query: `query{
+        search(
+          state:1
+          isregistered:1
+        ){
+          originorder{
+            orderid
+            occupation
+            datetime
+            duration
+            mode
+            count
+            male
+            female
+          }
+          modifiedorder{
+            changeddatetime
+            changedduration
+            changedmode
+            changedcount
+            changedmale
+            changedfemale
+          }
+          hotel{
+            hotelname
+            hoteladdress
+          }
+          postorder{
+            salary
+          }
+          countyet
+          maleyet
+          femaleyet
+          ptorderstate
+        }
+      }`
+    }).then((res) => {
+      console.log('success', res);
+      let temp_change = []
+      let temp_normal = []
+      let temp_invalid = []
+      let temp_list = []
+      for (let item of res.search) {
+        util.formatItemOrigin(item)
+        if (item.modifiedorder.length > 0) {
+          util.formatItemModify(item)
+        }
+        if (item.ptorderstate === 4) {
+          temp_change.push(item)
+        } else if (item.ptorderstate === 1 || item.ptorderstate === 3) {
+          temp_normal.push(item)
+        } else if (item.ptorderstate === 2 || item.ptorderstate === 5) {
+          temp_invalid.push(item)
+        }
+      }
+      temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
+      wx.hideToast()
+      this.setData({
+        list: temp_list
+      })
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    }).catch((error) => {
+      console.log('fail', error);
+      wx.showToast({
+        title: '获取失败',
+        icon: 'none'
+      })
+    });
   },
 
   /**

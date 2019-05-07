@@ -53,7 +53,7 @@ Page({
         url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
       })
     }
-    /* picker start */
+    /* picker */
     let date = util.formatTime(new Date()).slice(0, 10).replace(/\//g, '-')
     this.setData({
       today: date
@@ -138,7 +138,63 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.showNavigationBarLoading();
+    gql.query({
+      query: `query{
+        search(
+          state:1
+          isregistered:0
+        ){
+          originorder{
+            orderid
+            occupation
+            datetime
+            duration
+            mode
+            count
+            male
+            female
+          }
+          modifiedorder{
+            changeddatetime
+            changedduration
+            changedmode
+            changedcount
+            changedmale
+            changedfemale
+          }
+          hotel{
+            hotelname
+          }
+          postorder{
+            salary
+          }
+          countyet
+          maleyet
+          femaleyet
+        }
+      }`
+    }).then((res) => {
+      console.log('success', res);
+      for (let item of res.search) {
+        util.formatItemOrigin(item)
+        if (item.modifiedorder.length > 0) {
+          util.formatItemModify(item)
+        }
+      }
+      wx.hideToast()
+      this.setData({
+        list: res.search
+      })
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    }).catch((error) => {
+      console.log('fail', error);
+      wx.showToast({
+        title: '获取失败',
+        icon: 'none'
+      })
+    });
   },
 
   /**
