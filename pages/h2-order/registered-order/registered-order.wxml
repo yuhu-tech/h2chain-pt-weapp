@@ -37,7 +37,7 @@
           <view class="list_tip {{item.ptorderstate===2||item.ptorderstate===5?'card_N':''}}">{{item.hotel.hoteladdress}}</view>
           <view class='list_reason r' wx:if="{{item.ptorderstate===5}}">时间变更不参加</view>
           <view class='list_reason r' wx:elif="{{item.ptorderstate===2}}">被顾问拒绝</view>
-          <view class='list_reason_btn' wx:if="{{item.modifiedorder.length>0&&item.modifiedorder[0].time!==item.originorder.time}}">
+          <view class='list_reason_btn' wx:if="{{item.ptorderstate===4&&item.modifiedorder.length>0&&item.modifiedorder[0].time!==item.originorder.time}}">
             <button bindtap='doOut' data-orderid='{{item.originorder.orderid}}'>不去了</button>
             <button bindtap='doIn' data-orderid='{{item.originorder.orderid}}'>继续参加</button>
           </view>
