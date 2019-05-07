@@ -28,7 +28,6 @@ Page({
       name: '社会人员',
       value: 2
     }],
-    phone: '',
     qlInfo: ''
   },
 
@@ -50,6 +49,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    wx.login({
+      success: res => {
+        this.setData({
+          js_code: res.code
+        })
+      }
+    })
     gql.query({
       query: `query {
         me{
@@ -68,12 +74,8 @@ Page({
       console.log('success', res.me.personalmsg);
       let idx_h = ''
       let idx_w = ''
-      if (res.me.personalmsg.height > 0) {
-        idx_h = this.data.range_h.indexOf(res.me.personalmsg.height)
-      }
-      if (res.me.personalmsg.weight > 0) {
-        idx_w = this.data.range_w.indexOf(res.me.personalmsg.weight)
-      }
+      idx_h = this.data.range_h.indexOf(res.me.personalmsg.height)
+      idx_w = this.data.range_w.indexOf(res.me.personalmsg.weight)
       this.setData({
         qlInfo: res.me.personalmsg,
         index_h: idx_h,
@@ -125,8 +127,25 @@ Page({
 
   getPhoneNumber(e) {
     console.log(e)
-    this.setData({
-      phone: '15988843977'
+    gql.query({
+      query: `query{
+        getphonenumber(
+          encryptedData:"${e.detail.encryptedData}"
+          iv:"${e.detail.iv}"
+          jscode:"${this.data.js_code}"
+        )
+      }`
+    }).then(res => {
+      console.log('success', res);
+      this.setData({
+        ['qlInfo.phonenumber']: res.getphonenumber
+      })
+    }).catch(err => {
+      console.log('fail', err);
+      wx.showToast({
+        title: '获取手机号失败',
+        icon: 'none'
+      })
     })
   },
 
@@ -158,7 +177,7 @@ Page({
       $inToptip().show('请输入您的姓名')
       return
     }
-    if (!this.data.phone && !this.data.qlInfo) {
+    if (!this.data.qlInfo) {
       $inToptip().show('请授权您的手机号')
       return
     }
@@ -187,7 +206,7 @@ Page({
         modifypersonalmsg(
           personalmsg: {
             name: "${e.detail.value.name}"
-            phonenumber: "${this.data.phone || this.data.qlInfo.phonenumber}"
+            phonenumber: "${this.data.qlInfo.phonenumber}"
             idnumber: "${e.detail.value.id}"
             gender: ${e.detail.value.gender}
             height: ${Number(this.data.range_h[this.data.index_h] || 0)}

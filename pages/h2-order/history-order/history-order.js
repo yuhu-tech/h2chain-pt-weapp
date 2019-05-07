@@ -32,6 +32,7 @@ Page({
   onShow: function() {
     wx.showToast({
       title: '获取中',
+      icon: 'loading',
       duration: 10000
     })
     gql.query({
@@ -129,6 +130,7 @@ Page({
   bindDateChange(e) {
     wx.showToast({
       title: '获取中',
+      icon: 'loading',
       duration: 10000
     })
     this.setData({
@@ -176,7 +178,7 @@ Page({
       console.log('success', res);
       for (let item of res.search) {
         util.formatItemOrigin(item)
-        if (item.modifiedorder.length > 0) {
+        if (item.modifiedorder && item.modifiedorder.length > 0) {
           util.formatItemModify(item)
         }
       }

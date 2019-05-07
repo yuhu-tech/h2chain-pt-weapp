@@ -44,7 +44,7 @@
             <label>身高</label>
             <view class='ipt_group_item_ipt'>
               <picker name="height" bindchange="bindPickerChangeH" value="{{index_h}}" range="{{range_h}}">
-                <view class="{{index_h?'':'nc8'}}">{{index_h!==-1?range_h[index_h]:'请选择您的身高'}}</view>
+                <view class="{{index_h!==-1?'':'nc8'}}">{{index_h!==-1?range_h[index_h]:'请选择您的身高'}}</view>
               </picker>
               <label>cm</label>
             </view>
@@ -53,7 +53,7 @@
             <label>体重</label>
             <view class='ipt_group_item_ipt'>
               <picker name="weight" bindchange="bindPickerChangeW" value="{{index_w}}" range="{{range_w}}">
-                <view class="{{index_w?'':'nc8'}}">{{index_w!==-1?range_w[index_w]:'请选择您的体重'}}</view>
+                <view class="{{index_w!==-1?'':'nc8'}}">{{index_w!==-1?range_w[index_w]:'请选择您的体重'}}</view>
               </picker>
               <label>kg</label>
             </view>

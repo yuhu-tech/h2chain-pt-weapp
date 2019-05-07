@@ -9,9 +9,9 @@
     </wux-row>
     <wux-row>
       <wux-cell-group wx:if="{{qlInfo}}">
-        <wux-cell title="姓名" extra="{{qlInfo.name||'-'}}" hover-class="none" />
+        <wux-cell title="姓名" extra="{{qlInfo.name||'暂无'}}" hover-class="none" />
         <view class='bd_btm' />
-        <wux-cell title="手机" extra="{{qlInfo.phonenumber||'-'}}" hover-class="none" />
+        <wux-cell title="手机" extra="{{qlInfo.phonenumber||'暂无'}}" hover-class="none" />
       </wux-cell-group>
     </wux-row>
     <wux-white-space body-style='height:15rpx' />

@@ -137,8 +137,8 @@ Page({
   onShareAppMessage: function(res) {
     console.log(res);
     return {
-      title: `五星级酒店${'服务员'}招聘！`,
-      path: '/pages/h2-account/auth/auth'
+      title: `五星级酒店${this.data.order.hotel.hotelname}招聘！`,
+      path: `/pages/h2-account/auth/auth?share=share&orderid=${this.data.orderid}`
     }
   },
 

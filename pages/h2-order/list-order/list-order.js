@@ -47,7 +47,7 @@ Page({
     }
     console.log('onshow')
     let isShare = wx.getStorageSync('share')
-    if (isShare==='share') {
+    if (isShare === 'share') {
       console.log('share')
       wx.navigateTo({
         url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
@@ -229,24 +229,8 @@ Page({
   },
 
   goRegister: function(e) {
-    gql.query({
-      query: `query{
-        me{
-          personalmsg{
-            name
-            phonenumber
-            idnumber
-            gender
-            height
-            weight
-            status
-          }
-        }
-      }`
-    }).then(res => {
-      if (res.me.personalmsg) {
-        gql.mutate({
-          mutation: `mutation{
+    gql.mutate({
+      mutation: `mutation{
             registerorder(
               registerorder: {
                 orderid: "${e.currentTarget.dataset.orderid}"
@@ -256,18 +240,13 @@ Page({
               error
             }
           }`
-        }).then(res => {
-          wx.redirectTo({
-            url: '/pages/h2-order/registered-success/registered-success',
-          })
-        }).catch(err => {
-          console.log(err)
-          wx.showToast({
-            title: '报名失败',
-            icon: 'none'
-          })
-        })
-      } else {
+    }).then(res => {
+      wx.redirectTo({
+        url: '/pages/h2-order/registered-success/registered-success',
+      })
+    }).catch(err => {
+      console.log(err)
+      if (err.errors[0].message === 'cannot register order without making personalmessages') {
         wx.showModal({
           title: '提示',
           content: '完善信息以报名',
@@ -280,13 +259,12 @@ Page({
             }
           }
         })
+      } else {
+        wx.showToast({
+          title: '报名失败',
+          icon: 'none'
+        })
       }
-    }).catch(err => {
-      console.log(err)
-      wx.showToast({
-        title: '获取信息失败',
-        icon: 'none'
-      })
     })
   },
 
