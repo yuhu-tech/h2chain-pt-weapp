@@ -37,6 +37,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    console.log('begin onShow----')
+    console.log(this.data.orderid)
     gql.query({
       query: `query{
         search(
@@ -67,12 +69,17 @@ Page({
           postorder{
             salary
           }
+          hotel{
+            cover
+          }
           countyet
           maleyet
           femaleyet
         }
       }`
     }).then((res) => {
+      console.log('then');
+      console.log(res);
       util.formatItemOrigin(res.search[0])
       if (res.search[0].modifiedorder && res.search[0].modifiedorder.length > 0) {
         util.formatItemModify(res.search[0])

@@ -5,14 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderid: 'default'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      orderid: options.orderid
+    })
   },
 
   /**
@@ -64,8 +66,7 @@ Page({
     console.log(res);
     return {
       title: '我刚才报名了这个零时工！',
-      path: '/pages/h2-account/auth/auth',
-      imageUrl: '/images/order-avatar.png'
+      path: `/pages/h2-account/auth/auth?share=share&orderid=${this.data.orderid}`
     }
   },
 

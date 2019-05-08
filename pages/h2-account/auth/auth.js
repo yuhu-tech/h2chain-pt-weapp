@@ -17,6 +17,8 @@ Page({
     this.setData({
       options: options
     })
+    console.log('options')
+    console.log(options)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {

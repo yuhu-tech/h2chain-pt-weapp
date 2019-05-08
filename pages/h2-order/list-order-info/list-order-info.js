@@ -50,6 +50,7 @@ Page({
           adviser{
             companyname
             name
+            phone
           }
           originorder{
             orderid
@@ -79,6 +80,7 @@ Page({
             hoteladdress
             hotelphone
             hotelintroduction
+            cover
           }
           countyet
           maleyet
@@ -212,7 +214,7 @@ Page({
                 }`
               }).then(res => {
                 wx.redirectTo({
-                  url: '/pages/h2-order/registered-success/registered-success',
+                  url: `/pages/h2-order/registered-success/registered-success?orderid=${this.data.order.originorder.orderid}`,
                 })
               }).catch(err => {
                 console.log(err)
