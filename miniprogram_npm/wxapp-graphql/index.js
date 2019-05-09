@@ -49,7 +49,7 @@ module.exports = (function() {
   var __REQUIRE_DEFAULT__ = function(obj) {
     return obj && obj.__esModule ? obj.default : obj;
   };
-  __DEFINE__(1552617112607, function(require, module, exports) {
+  __DEFINE__(1554946536254, function(require, module, exports) {
     var responseHandler = function(resolve, reject, res, errorHandler) {
       var retData = res.data.errors ? res.data.errors[0].message : {
         code: 200
@@ -82,6 +82,11 @@ module.exports = (function() {
         return {
           query: function(queryObj) {
             return new Promise(function(resolve, reject) {
+              wx.showToast({
+                title: '获取中',
+                icon: 'loading',
+                duration: 5000
+              })
               wx.request({
                 url: obj.url,
                 method: 'POST',
@@ -90,7 +95,18 @@ module.exports = (function() {
                   variables: queryObj.variables
                 }),
                 header: queryObj.header || (typeof obj.header === 'function' ? obj.header() : obj.header),
+                success: function(res) {
+                  wx.hideToast()
+                },
                 complete: function(res) {
+                  console.log('query')
+                  console.log(res)
+                  if (res.errMsg.indexOf('timeout') > -1) {
+                    wx.showToast({
+                      title: '请求超时',
+                      icon: 'none'
+                    })
+                  }
                   responseHandler(resolve, reject, res, obj.errorHandler);
                 }
               });
@@ -99,6 +115,11 @@ module.exports = (function() {
 
           mutate: function(mutateObj) {
             return new Promise(function(resolve, reject) {
+              wx.showToast({
+                title: '获取中',
+                icon: 'loading',
+                duration: 5000
+              })
               wx.request({
                 url: obj.url,
                 method: 'POST',
@@ -107,7 +128,18 @@ module.exports = (function() {
                   variables: mutateObj.variables
                 }),
                 header: mutateObj.header || (typeof obj.header === 'function' ? obj.header() : obj.header),
+                success: function(res) {
+                  wx.hideToast()
+                },
                 complete: function(res) {
+                  console.log('mutate')
+                  console.log(res)
+                  if (res.errMsg.indexOf('timeout') > -1) {
+                    wx.showToast({
+                      title: '请求超时',
+                      icon: 'none'
+                    })
+                  }
                   responseHandler(resolve, reject, res);
                 }
               });
@@ -142,6 +174,6 @@ module.exports = (function() {
     var map = {};
     return __REQUIRE__(map[modId], modId);
   })
-  return __REQUIRE__(1552617112607);
+  return __REQUIRE__(1554946536254);
 })()
 //# sourceMappingURL=index.js.map

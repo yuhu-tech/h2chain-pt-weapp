@@ -115,7 +115,6 @@ Page({
         }
       }
       temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
-      wx.hideToast()
       this.setData({
         list: temp_list
       })
@@ -145,11 +144,6 @@ Page({
   },
 
   doSearch: function() {
-    wx.showToast({
-      title: '获取中',
-      icon: 'loading',
-      duration: 10000
-    })
     gql.query({
       query: `query{
         search(
@@ -207,7 +201,6 @@ Page({
         }
       }
       temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
-      wx.hideToast()
       this.setData({
         list: temp_list
       })
@@ -221,11 +214,6 @@ Page({
   },
 
   doSearchDate: function() {
-    wx.showToast({
-      title: '获取中',
-      icon: 'loading',
-      duration: 10000
-    })
     let timeStamp = new Date(`${this.data.date}T00:00:00`).getTime() / 1000
     gql.query({
       query: `query{
@@ -273,7 +261,6 @@ Page({
           util.formatItemModify(item)
         }
       }
-      wx.hideToast()
       this.setData({
         list: res.search
       })
@@ -288,10 +275,6 @@ Page({
 
   /* 选择日期 */
   bindDateChange(e) {
-    wx.showToast({
-      title: '获取中',
-      duration: 10000
-    })
     this.setData({
       date: e.detail.value
     })

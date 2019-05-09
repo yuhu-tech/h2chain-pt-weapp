@@ -64,11 +64,6 @@ Page({
     this.setData({
       today: date
     })
-    wx.showToast({
-      title: '获取中',
-      icon: 'loading',
-      duration: 5000
-    })
     gql.query({
       query: `query{
         search(
@@ -112,7 +107,6 @@ Page({
           util.formatItemModify(item)
         }
       }
-      wx.hideToast()
       this.setData({
         list: res.search
       })
@@ -217,11 +211,6 @@ Page({
   },
 
   bindDateChange(e) {
-    wx.showToast({
-      title: '获取中',
-      icon: 'loading',
-      duration: 5000
-    })
     this.setData({
       date: e.detail.value
     })
@@ -270,7 +259,6 @@ Page({
           util.formatItemModify(item)
         }
       }
-      wx.hideToast()
       this.setData({
         list: res.search
       })
