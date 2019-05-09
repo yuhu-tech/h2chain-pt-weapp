@@ -1,5 +1,6 @@
 // pages/h2-account/auth/auth.js
 var gql = require('../../../utils/graphql.js')
+var util = require('../../../utils/util.js')
 
 Page({
 
@@ -17,21 +18,29 @@ Page({
     this.setData({
       options: options
     })
-    console.log('options')
-    console.log(options)
+    let orderid = util.getUrlParam(decodeURIComponent(options.q), 'orderid')
+    console.log('orderid')
+    console.log(orderid)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          console.log(res)
+          /* qrcode */
+          if (this.data.options.qrcode) {
+            wx.setStorageSync('qrcode', 'qrcode')
+            wx.setStorageSync('orderid', this.data.options.orderid)
+            wx.switchTab({
+              url: `/pages/h2-order/list-order/list-order`,
+            })
+          }
+          /* share */
           if (this.data.options.adviser) {
-            console.log('check adviser')
+            /* adviser jump */
             wx.navigateTo({
               url: `/pages/h2-order/share/share?orderid=${this.data.options.orderid}`,
             })
           } else {
-            console.log('check not adviser')
+            /* pt jump */
             if (this.data.options.share) {
-              console.log('check share')
               wx.setStorageSync('share', 'share')
               wx.setStorageSync('orderid', this.data.options.orderid)
             }
@@ -39,6 +48,7 @@ Page({
               url: `/pages/h2-order/list-order/list-order`,
             })
           }
+          /* end */
         }
       }
     })
@@ -109,7 +119,7 @@ Page({
             }).then((res) => {
               console.log('success', res);
               wx.setStorageSync('token', res.login.token)
-
+              /* share */
               if (this.data.options.adviser) {
                 console.log('check adviser')
                 wx.navigateTo({
@@ -126,7 +136,7 @@ Page({
                   url: `/pages/h2-order/list-order/list-order`,
                 })
               }
-
+              /* end */
             }).catch((error) => {
               console.log('fail', error);
             });

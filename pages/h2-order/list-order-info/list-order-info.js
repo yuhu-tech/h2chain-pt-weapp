@@ -39,6 +39,7 @@ Page({
    */
   onShow: function() {
     wx.setStorageSync('share', 'done')
+    wx.setStorageSync('qrcode', 'done')
     gql.query({
       query: `query{
         search(

@@ -45,20 +45,25 @@ Page({
         selected: 0
       })
     }
-    console.log('onshow')
-    let isShare = wx.getStorageSync('share')
-    if (isShare === 'share') {
-      console.log('share')
+    /* qrcode */
+    let isQrcode = wx.getStorageSync('qrcode')
+    if (isQrcode === 'qrcode') {
       wx.navigateTo({
         url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
       })
     }
-    /* picker */
+    /* pt jump */
+    let isShare = wx.getStorageSync('share')
+    if (isShare === 'share') {
+      wx.navigateTo({
+        url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
+      })
+    }
+    /* end */
     let date = util.formatTime(new Date()).slice(0, 10).replace(/\//g, '-')
     this.setData({
       today: date
     })
-    /* request */
     wx.showToast({
       title: '获取中',
       icon: 'loading',

@@ -42,9 +42,20 @@ const formatItemModify = item => {
   return item
 }
 
+
+const getUrlParam = (url, key) => {
+  var reg = new RegExp('(^|&|/?)' + key + '=([^&|/?]*)(&|/?|$)', 'i')
+  var r = url.substr(1).match(reg)
+  if (r != null) {
+    return r[2]
+  }
+  return null;
+}
+
 module.exports = {
   formatTime,
   formatNumber,
   formatItemOrigin,
-  formatItemModify
+  formatItemModify,
+  getUrlParam
 }
