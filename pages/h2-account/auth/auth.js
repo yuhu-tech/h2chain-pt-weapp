@@ -19,8 +19,6 @@ Page({
       options: options
     })
     let orderid = util.getUrlParam(decodeURIComponent(options.q), 'orderid')
-    console.log('orderid')
-    console.log(orderid)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {

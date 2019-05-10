@@ -4,5 +4,6 @@
     "wux-white-space": "wux-weapp/white-space",
     "wux-cell": "wux-weapp/cell"
   },
-  "navigationBarTitleText": "已报名"
+  "navigationBarTitleText": "已报名",
+  "enablePullDownRefresh": true
 }

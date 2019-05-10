@@ -9,6 +9,7 @@ Page({
    */
   data: {
     today: '',
+    date: '',
     data: '',
     list: [],
     location: {
@@ -138,6 +139,9 @@ Page({
    */
   onPullDownRefresh: function() {
     wx.showNavigationBarLoading();
+    this.setData({
+      date: ''
+    })
     gql.query({
       query: `query{
         search(

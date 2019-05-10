@@ -40,7 +40,7 @@
   </view>
 
   <view>
-    <button open-type='share'>确认分享</button>
+    <button open-type='share'>分享</button>
     <wux-white-space body-style='height:65rpx' />
   </view>
 

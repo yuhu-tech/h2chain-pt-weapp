@@ -3,5 +3,6 @@
     "wux-icon": "wux-weapp/icon",
     "wux-white-space": "wux-weapp/white-space"
   },
-  "navigationBarTitleText": "订单列表"
+  "navigationBarTitleText": "订单列表",
+  "enablePullDownRefresh": true
 }
