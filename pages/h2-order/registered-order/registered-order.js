@@ -296,6 +296,7 @@ Page({
     gql.mutate({
       mutation: `mutation{
         modifyptoforder(
+          formid:"${e.detail.formId}"
           orderid: "${e.currentTarget.dataset.orderid}"
           ptstatus:3
         )

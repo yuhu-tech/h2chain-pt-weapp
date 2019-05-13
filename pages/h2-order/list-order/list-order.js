@@ -285,6 +285,7 @@ Page({
     gql.mutate({
       mutation: `mutation{
             registerorder(
+              formid:"${e.detail.formId}"
               registerorder: {
                 orderid: "${e.currentTarget.dataset.orderid}"
                 register: 1

@@ -60,9 +60,11 @@
 
         </view>
         <view class='list_btn'>
-          <button bindtap='goRegister' data-orderid='{{item.originorder.orderid}}'>
-            <text>立即报名</text>
-          </button>
+          <form report-submit='true' report-submit-timeout='10000' bindsubmit='goRegister'>
+            <button form-type='submit' data-orderid='{{item.originorder.orderid}}'>
+              <view class='text_btn'>立即报名</view>
+            </button>
+          </form>
         </view>
       </view>
     </view>

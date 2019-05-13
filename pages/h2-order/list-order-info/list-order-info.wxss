@@ -93,12 +93,12 @@ swiper {
 .card_btn_share {
   display: flex;
   align-items: center;
-  width: 250rpx !important;
+  width: 170rpx !important;
 }
 
 .card_btn_share image {
-  height: 50rpx;
-  width: 50rpx;
+  height: 40rpx;
+  width: 40rpx;
   margin-left: 10rpx;
 }
 

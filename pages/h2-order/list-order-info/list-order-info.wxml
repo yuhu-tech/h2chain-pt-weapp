@@ -56,10 +56,12 @@
       </view>
       <view class='card_btn'>
         <button class='card_btn_share' open-type='share'>
-          <text>邀请好友</text>
+          <text>分享</text>
           <image src='/images/icon-wechat.png' />
         </button>
-        <button bindtap='goRegister' wx:if="{{order.ptorderstate===null}}">立即报名</button>
+        <form report-submit='true' report-submit-timeout='10000' bindsubmit='goRegister'>
+          <button form-type='submit' wx:if="{{order.ptorderstate===null}}">立即报名</button>
+        </form>
       </view>
     </view>
 

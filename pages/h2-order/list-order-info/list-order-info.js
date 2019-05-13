@@ -180,7 +180,7 @@ Page({
     })
   },
 
-  goRegister: function() {
+  goRegister: function(e) {
     gql.query({
       query: `query{
         me{
@@ -205,6 +205,7 @@ Page({
               gql.mutate({
                 mutation: `mutation{
                   registerorder(
+                    formid:"${e.detail.formId}"
                     registerorder:{
                       orderid:"${this.data.order.originorder.orderid}"
                       register:1
