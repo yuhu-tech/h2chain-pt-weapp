@@ -18,6 +18,7 @@ page {
   height: 120rpx;
   width: 120rpx;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .wux-whitespace {

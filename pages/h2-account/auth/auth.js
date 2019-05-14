@@ -63,7 +63,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.doLogin()
   },
 
   /**
@@ -101,45 +101,41 @@ Page({
 
   },
 
-  bindGetUserInfo: function(e) {
+  doLogin: function() {
     wx.login({
       success: (res_login) => {
-        wx.getUserInfo({
-          success: (res_getUserInfo) => {
-            gql.mutate({
-              mutation: `mutation {
+        gql.mutate({
+          mutation: `mutation {
                 login(
                   jscode:"${res_login.code}"
                 ){
                   token
                 }
               }`
-            }).then((res) => {
-              console.log('success', res);
-              wx.setStorageSync('token', res.login.token)
-              /* share */
-              if (this.data.options.adviser) {
-                console.log('check adviser')
-                wx.navigateTo({
-                  url: `/pages/h2-order/share/share?orderid=${this.data.options.orderid}`,
-                })
-              } else {
-                console.log('check not adviser')
-                if (this.data.options.share) {
-                  console.log('check share')
-                  wx.setStorageSync('share', 'share')
-                  wx.setStorageSync('orderid', this.data.options.orderid)
-                }
-                wx.switchTab({
-                  url: `/pages/h2-order/list-order/list-order`,
-                })
-              }
-              /* end */
-            }).catch((error) => {
-              console.log('fail', error);
-            });
+        }).then((res) => {
+          console.log('success', res);
+          wx.setStorageSync('token', res.login.token)
+          /* share */
+          if (this.data.options.adviser) {
+            console.log('check adviser')
+            wx.navigateTo({
+              url: `/pages/h2-order/share/share?orderid=${this.data.options.orderid}`,
+            })
+          } else {
+            console.log('check not adviser')
+            if (this.data.options.share) {
+              console.log('check share')
+              wx.setStorageSync('share', 'share')
+              wx.setStorageSync('orderid', this.data.options.orderid)
+            }
+            wx.switchTab({
+              url: `/pages/h2-order/list-order/list-order`,
+            })
           }
-        })
+          /* end */
+        }).catch((error) => {
+          console.log('fail', error);
+        });
       }
     })
   }

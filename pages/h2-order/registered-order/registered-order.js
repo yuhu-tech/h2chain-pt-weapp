@@ -204,6 +204,12 @@ Page({
         }
       }
       temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
+      if (temp_list.length === 0) {
+        wx.showToast({
+          title: '这里没有订单喔',
+          icon: 'none'
+        })
+      }
       this.setData({
         list: temp_list
       })
