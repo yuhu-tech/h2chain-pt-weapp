@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
     qlInfo: '',
   },
 
@@ -35,16 +34,6 @@ Page({
         selected: 2
       })
     }
-    wx.getUserInfo({
-      success: res => {
-        this.setData({
-          userInfo: res.userInfo
-        })
-      },
-      fail: err => {
-        console.log(err)
-      }
-    })
     gql.query({
       query: `query {
         me{

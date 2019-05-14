@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "wux-icon": "wux-weapp/icon",
-    "wux-white-space": "wux-weapp/white-space"
+    "wux-white-space": "wux-weapp/white-space",
+    "guide": "/components/guide/guide"
   },
   "navigationBarTitleText": "订单列表",
   "enablePullDownRefresh": true
