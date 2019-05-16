@@ -19,7 +19,7 @@
       <view class='list_item' wx:for="{{list}}" wx:key="" bindtap='goDetail' data-orderid='{{item.originorder.orderid}}'>
         <view class='list_bar'>
           <view class='list_bar_l'>
-            <image src='/images/order-avatar.png' />
+            <image src='{{item.avatar}}' />
             <text>{{item.originorder.occupation}}</text>
           </view>
           <view class='list_bar_r' bindtap='goOrderInfo'>

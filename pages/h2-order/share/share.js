@@ -9,7 +9,8 @@ Page({
    */
   data: {
     orderid: 'default',
-    order: ''
+    order: '',
+    avatar: ''
   },
 
   /**
@@ -37,8 +38,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('begin onShow----')
-    console.log(this.data.orderid)
     gql.query({
       query: `query{
         search(
@@ -78,15 +77,15 @@ Page({
         }
       }`
     }).then((res) => {
-      console.log('then');
-      console.log(res);
+      let avatar = util.selectAvatar(res.search[0].originorder.occupation)
       util.formatItemOrigin(res.search[0])
       if (res.search[0].modifiedorder && res.search[0].modifiedorder.length > 0) {
         util.formatItemModify(res.search[0])
       }
       console.log('success', res);
       this.setData({
-        order: res.search[0]
+        order: res.search[0],
+        avatar: avatar
       })
     }).catch((error) => {
       console.log('fail', error);

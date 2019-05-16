@@ -105,6 +105,7 @@ Page({
       let temp_invalid = []
       let temp_list = []
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -191,6 +192,7 @@ Page({
       let temp_invalid = []
       let temp_list = []
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -265,6 +267,7 @@ Page({
     }).then((res) => {
       console.log('success', res);
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -299,11 +302,13 @@ Page({
 
   /* 继续参加 */
   doIn: function(e) {
+    console.log(e)
+    return
     gql.mutate({
       mutation: `mutation{
         modifyptoforder(
           formid:"${e.detail.formId}"
-          orderid: "${e.currentTarget.dataset.orderid}"
+          orderid: "${e.detail.target.dataset.orderid}"
           ptstatus:3
         )
       }`

@@ -13,7 +13,7 @@
     <view class='card'>
       <view class='card_bar'>
         <view class='card_bar_l'>
-          <image src='/images/order-avatar.png' />
+          <image src='{{avatar}}' />
           <text>{{order.originorder.occupation}}</text>
         </view>
         <view class='card_bar_r'>

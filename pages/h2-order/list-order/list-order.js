@@ -103,6 +103,7 @@ Page({
     }).then((res) => {
       console.log('success', res);
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -180,6 +181,7 @@ Page({
     }).then((res) => {
       console.log('success', res);
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -258,6 +260,7 @@ Page({
     }).then((res) => {
       console.log('success', res);
       for (let item of res.search) {
+        item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
         if (item.modifiedorder.length > 0) {
           util.formatItemModify(item)
@@ -287,7 +290,7 @@ Page({
             registerorder(
               formid:"${e.detail.formId}"
               registerorder: {
-                orderid: "${e.currentTarget.dataset.orderid}"
+                orderid: "${e.detail.target.dataset.orderid}"
                 register: 1
               }
             ) {
@@ -296,7 +299,7 @@ Page({
           }`
     }).then(res => {
       wx.redirectTo({
-        url: '/pages/h2-order/registered-success/registered-success',
+        url: `/pages/h2-order/registered-success/registered-success?orderid=${e.detail.target.dataset.orderid}`,
       })
     }).catch(err => {
       console.log(err)

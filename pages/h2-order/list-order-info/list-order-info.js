@@ -11,7 +11,8 @@ Page({
     history: '',
     register: '',
     orderid: 'default',
-    order: ''
+    order: '',
+    avatar: ''
   },
 
   /**
@@ -91,6 +92,7 @@ Page({
       }`
     }).then((res) => {
       console.log('success', res);
+      let avatar = util.selectAvatar(res.search[0].originorder.occupation)
       util.formatItemOrigin(res.search[0])
       if (res.search[0].modifiedorder && res.search[0].modifiedorder.length > 0) {
         util.formatItemModify(res.search[0])
@@ -98,7 +100,8 @@ Page({
       res.search[0].postorder.workcontent = decodeURI(res.search[0].postorder.workcontent)
       res.search[0].postorder.attention = decodeURI(res.search[0].postorder.attention)
       this.setData({
-        order: res.search[0]
+        order: res.search[0],
+        avatar: avatar
       })
     }).catch((error) => {
       console.log('fail', error);
