@@ -35,6 +35,7 @@ Page({
         search(
           state:2
         ){
+          hash
           originorder{
             orderid
             occupation
@@ -114,6 +115,7 @@ Page({
         search(
           state:2
         ){
+          hash
           originorder{
             orderid
             occupation
@@ -194,6 +196,7 @@ Page({
           state:2
           datetime:${Number(timeStamp)}
         ){
+          hash
           originorder{
             orderid
             occupation
@@ -249,6 +252,12 @@ Page({
   goDetail: function(e) {
     wx.navigateTo({
       url: `/pages/h2-order/list-order-info/list-order-info?orderid=${e.currentTarget.dataset.orderid}&history=history`,
+    })
+  },
+
+  goChainInfo: function(e) {
+    wx.navigateTo({
+      url: `/pages/h2-order/chain-info/chain-info?hash=${e.currentTarget.dataset.hash}`,
     })
   }
 

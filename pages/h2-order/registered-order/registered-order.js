@@ -208,7 +208,7 @@ Page({
       temp_list = temp_change.concat(temp_normal).concat(temp_invalid)
       if (temp_list.length === 0) {
         wx.showToast({
-          title: '这里没有订单喔',
+          title: '还没有报名喔',
           icon: 'none'
         })
       }
@@ -302,8 +302,6 @@ Page({
 
   /* 继续参加 */
   doIn: function(e) {
-    console.log(e)
-    return
     gql.mutate({
       mutation: `mutation{
         modifyptoforder(
@@ -337,7 +335,8 @@ Page({
     gql.mutate({
       mutation: `mutation{
         modifyptoforder(
-          orderid: "${e.currentTarget.dataset.orderid}"
+          formid:"${e.detail.formId}"
+          orderid: "${e.detail.target.dataset.orderid}"
           ptstatus: 5
         )
       }`

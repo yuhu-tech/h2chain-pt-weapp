@@ -26,7 +26,6 @@ Page({
     this.setData({
       options: options
     })
-    console.log('onload', this.data.options)
   },
 
   /**
@@ -52,13 +51,15 @@ Page({
       wx.navigateTo({
         url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
       })
+      return
     }
-    /* pt jump */
+    /* share */
     let isShare = wx.getStorageSync('share')
     if (isShare === 'share') {
       wx.navigateTo({
         url: `/pages/h2-order/list-order-info/list-order-info?orderid=${wx.getStorageSync('orderid')}`,
       })
+      return
     }
     /* end */
     let date = util.formatTime(new Date()).slice(0, 10).replace(/\//g, '-')
@@ -102,6 +103,12 @@ Page({
       }`
     }).then((res) => {
       console.log('success', res);
+      if (res.search.length === 0) {
+        wx.showToast({
+          title: '还没有订单喔',
+          icon: 'none'
+        })
+      }
       for (let item of res.search) {
         item.avatar = util.selectAvatar(item.originorder.occupation)
         util.formatItemOrigin(item)
@@ -287,16 +294,17 @@ Page({
   goRegister: function(e) {
     gql.mutate({
       mutation: `mutation{
-            registerorder(
-              formid:"${e.detail.formId}"
-              registerorder: {
-                orderid: "${e.detail.target.dataset.orderid}"
-                register: 1
-              }
-            ) {
-              error
-            }
-          }`
+        registerorder(
+          formid:"${e.detail.formId}"
+          registerorder: {
+            orderid: "${e.detail.target.dataset.orderid}"
+            register: 1
+            type: 1
+          }
+        ) {
+          error
+        }
+      }`
     }).then(res => {
       wx.redirectTo({
         url: `/pages/h2-order/registered-success/registered-success?orderid=${e.detail.target.dataset.orderid}`,

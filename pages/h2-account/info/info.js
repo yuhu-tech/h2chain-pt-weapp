@@ -72,10 +72,12 @@ Page({
       }`
     }).then((res) => {
       console.log('success', res.me.personalmsg);
-      let idx_h = ''
-      let idx_w = ''
-      idx_h = this.data.range_h.indexOf(res.me.personalmsg.height)
-      idx_w = this.data.range_w.indexOf(res.me.personalmsg.weight)
+      let idx_h = -1
+      let idx_w = -1
+      if (res.me.personalmsg) {
+        idx_h = this.data.range_h.indexOf(res.me.personalmsg.height)
+        idx_w = this.data.range_w.indexOf(res.me.personalmsg.weight)
+      }
       this.setData({
         qlInfo: res.me.personalmsg,
         index_h: idx_h,
@@ -149,30 +151,24 @@ Page({
     })
   },
 
-  radioChangeGender(e) {
-    console.log('Gender发生change事件，携带value值为：', e.detail.value)
-  },
+  radioChangeGender(e) {},
 
-  radioChangeId(e) {
-    console.log('Id发生change事件，携带value值为：', e.detail.value)
-  },
+  radioChangeId(e) {},
 
   bindPickerChangeH(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index_h: e.detail.value
     })
   },
 
   bindPickerChangeW(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index_w: e.detail.value
     })
   },
 
   formSubmit(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log(e.detail.value)
     if (!e.detail.value.name) {
       $inToptip().show('请输入您的姓名')
       return

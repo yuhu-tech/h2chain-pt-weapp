@@ -1,33 +1,29 @@
-/* pages/h2-account/home/home.wxss */
-
-page {
-  background: linear-gradient(#f9b552, #f05d70);
-}
+/* pages/h2-account/setting/setting.wxss */
 
 .info_card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40rpx;
+  height: 200rpx;
+  padding: 30rpx;
   box-sizing: border-box;
-  border-bottom: solid 1rpx #f0f0f0;
-  background-color: #fff;
 }
 
 .avatar {
-  height: 120rpx;
-  width: 120rpx;
+  height: 140rpx;
+  width: 140rpx;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .wux-whitespace {
-  background-color: #f0f0f0;
+  background-color: #f8f8f8;
 }
 
 .logout {
   text-align: center;
-  margin-top: 50rpx;
+  margin-top: 30rpx;
+  font-size: 34rpx;
 }
 
 .wux-cell-group__bd {
@@ -39,7 +35,7 @@ page {
 }
 
 .wux-cell {
-  padding: 40rpx !important;
+  padding: 30rpx !important;
 }
 
 .wux-cell::after {
@@ -51,17 +47,5 @@ page {
 }
 
 .bd_btm {
-  border-bottom: solid 1rpx #f0f0f0;
+  border-bottom: solid 1rpx #f8f8f8;
 }
-
-/* modify */
-
-.wux-row {
-  background-color: #fff;
-}
-
-.shadow {
-  box-shadow: 0px 4px 4px rgba(238, 61, 84, 0.3);
-}
-
-/* button */

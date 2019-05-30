@@ -39,8 +39,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    wx.setStorageSync('share', 'done')
     wx.setStorageSync('qrcode', 'done')
+    wx.setStorageSync('share', 'done')
     gql.query({
       query: `query{
         search(
@@ -146,8 +146,8 @@ Page({
   onShareAppMessage: function(res) {
     console.log(res);
     return {
-      title: `五星级酒店${this.data.order.hotel.hotelname}招聘！`,
-      path: `/pages/h2-account/auth/auth?share=share&orderid=${this.data.orderid}`
+      title: `一起去干活了！`,
+      path: `/pages/h2-account/auth/auth?orderid=${this.data.orderid}`
     }
   },
 
@@ -205,6 +205,17 @@ Page({
           content: '确定要报名吗？',
           success: res => {
             if (res.confirm) {
+              let type = 1
+              switch (wx.getStorageSync('sharetype')) {
+                case 'adviser':
+                  type = 2
+                  break;
+                case 'agent':
+                  type = 3
+                  break;
+                default:
+                  break;
+              }
               gql.mutate({
                 mutation: `mutation{
                   registerorder(
@@ -212,6 +223,8 @@ Page({
                     registerorder:{
                       orderid:"${this.data.order.originorder.orderid}"
                       register:1
+                      type:${type}
+                      ${wx.getStorageSync('sharetype')==='agent'?`inviterid:${wx.getStorageSync('agentid')}`:''}
                     }
                   ){
                     error

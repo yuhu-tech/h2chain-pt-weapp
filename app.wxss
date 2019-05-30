@@ -17,6 +17,10 @@ page {
   color: #f05d70;
 }
 
+.y {
+  color: #ffc167;
+}
+
 .n32 {
   color: #323232;
 }

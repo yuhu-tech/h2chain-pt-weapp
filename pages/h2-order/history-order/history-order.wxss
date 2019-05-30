@@ -109,3 +109,11 @@ page {
   justify-content: center;
   padding: 0 0 25rpx;
 }
+
+.list_reason text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500rpx;
+  text-align: center;
+}

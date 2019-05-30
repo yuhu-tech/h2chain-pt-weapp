@@ -1,13 +1,11 @@
-// pages/h2-account/home/home.js
-var gql = require('../../../utils/graphql.js')
-
+// pages/h2-account/setting/setting.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    qlInfo: '',
+
   },
 
   /**
@@ -28,12 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2
-      })
-    }
+
   },
 
   /**
@@ -78,24 +71,10 @@ Page({
         if (res.confirm) {
           wx.clearStorage()
           wx.reLaunch({
-            url: '/pages/h2-account/auth/auth',
+            url: '/pages/h2-account/login/login',
           })
-
         }
       }
-    })
-  },
-
-  goInfo: function() {
-    wx.navigateTo({
-      url: '/pages/h2-account/info/info',
-    })
-  },
-
-  showWaiting: function() {
-    wx.showToast({
-      title: '暂未开放❤︎',
-      icon: 'none'
     })
   }
 

@@ -38,7 +38,9 @@
           <view class='list_reason r' wx:if="{{item.ptorderstate===5}}">时间变更不参加</view>
           <view class='list_reason r' wx:elif="{{item.ptorderstate===2}}">被顾问拒绝</view>
           <view class='list_reason_btn' wx:if="{{item.ptorderstate===4&&item.modifiedorder.length>0&&item.modifiedorder[0].time!==item.originorder.time}}">
-            <button bindtap='doOut' data-orderid='{{item.originorder.orderid}}'>不去了</button>
+            <form report-submit='true' report-submit-timeout='10000' bindsubmit='doOut'>
+              <button form-type='submit' data-orderid='{{item.originorder.orderid}}'>不去了</button>
+            </form>
             <form report-submit='true' report-submit-timeout='10000' bindsubmit='doIn'>
               <button form-type='submit' data-orderid='{{item.originorder.orderid}}'>继续参加</button>
             </form>

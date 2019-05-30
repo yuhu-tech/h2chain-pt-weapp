@@ -17,13 +17,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.orderid) {
-      this.setData({
-        orderid: options.orderid
-      })
-    }
-    wx.showShareMenu({
-      withShareTicket: true
+    this.setData({
+      options: options
     })
   },
 
@@ -41,7 +36,7 @@ Page({
     gql.query({
       query: `query{
         search(
-          orderid:"${this.data.orderid}"
+          orderid:"${this.data.options.orderid}"
         ){
           adviser{
             companyname
@@ -128,10 +123,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    console.log(res)
+    let title = ''
+    let param = ''
+    if (this.data.options.adviser) {
+      title = '顾问喊你干活了。'
+      param = 'adviser'
+    }
+    if (this.data.options.agent) {
+      title = '代理喊你干活了。'
+      param = `agent&agentid=${this.data.options.agentid}`
+    }
     return {
-      title: '随心零工～',
-      path: `/pages/h2-account/auth/auth?share=share&orderid=${this.data.orderid}`
+      title: title,
+      path: `/pages/h2-account/auth/auth?share=share&sharetype=${param}&orderid=${this.data.options.orderid}`
     }
   }
 })

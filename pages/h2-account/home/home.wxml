@@ -2,34 +2,28 @@
 <view class="page">
   <view class="page__bd">
     <wux-row>
-      <view class='info_card'>
+      <navigator class='info_card' url='/pages/h2-account/info/info'>
         <open-data type="userNickName" />
         <view class='avatar'>
           <open-data type="userAvatarUrl" />
         </view>
-        <!-- <view>{{userInfo.nickName}}</view>
-        <image class='avatar' src="{{userInfo.avatarUrl}}"></image> -->
-      </view>
-    </wux-row>
-    <wux-row>
-      <wux-cell-group wx:if="{{qlInfo}}">
-        <wux-cell title="姓名" extra="{{qlInfo.name||'暂无'}}" hover-class="none" />
-        <view class='bd_btm' />
-        <wux-cell title="手机" extra="{{qlInfo.phonenumber||'暂无'}}" hover-class="none" />
-      </wux-cell-group>
+      </navigator>
     </wux-row>
     <wux-white-space body-style='height:15rpx' />
     <view class='shadow'>
       <wux-row>
-        <wux-cell-group>
-          <wux-cell thumb="/images/home-adviser.png" title="个人信息" bind:click="goInfo" extra="{{qlInfo?'编辑':'去完善'}}" />
-          <view class='bd_btm' />
-          <wux-cell thumb="/images/home-history.png" title="工作历史" isLink url="/pages/h2-order/history-order/history-order" />
-        </wux-cell-group>
+        <wux-cell thumb="/images/home-wallet.png" title="鲸豆中心" isLink url="/pages/h2-account/wallet/wallet" />
+        <view class='bd_btm' />
+        <wux-cell thumb="/images/home-adviser.png" title="鲸豆商城" isLink bind:click="showWaiting" />
+        <view class='bd_btm' />
+        <wux-cell thumb="/images/home-history.png" title="工作历史" isLink url="/pages/h2-order/history-order/history-order" />
       </wux-row>
     </view>
-    <!-- <view class='logout w'>
-      <text bindtap='doLogout'>退出登录</text>
-    </view> -->
+    <wux-white-space body-style='height:15rpx' />
+    <view class='shadow'>
+      <wux-row>
+        <wux-cell thumb="/images/home-setting.png" title="系统设置" isLink url="/pages/h2-account/setting/setting" />
+      </wux-row>
+    </view>
   </view>
 </view>

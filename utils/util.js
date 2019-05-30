@@ -42,6 +42,11 @@ const formatItemModify = item => {
   return item
 }
 
+const formatWalletDate = item => {
+  let temp = new Date(item.timestamp * 1000)
+  item.date = `${formatTime(temp).slice(0, 10)}`
+  return item
+}
 
 const getUrlParam = (url, key) => {
   var reg = new RegExp('(^|&|/?)' + key + '=([^&|/?]*)(&|/?|$)', 'i')
@@ -88,6 +93,7 @@ module.exports = {
   formatNumber,
   formatItemOrigin,
   formatItemModify,
+  formatWalletDate,
   getUrlParam,
   selectAvatar
 }
