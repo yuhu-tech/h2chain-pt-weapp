@@ -1,0 +1,46 @@
+<!--pages/h2-account/wallet/wallet.wxml-->
+<view class='page'>
+  <!-- card -->
+  <view class='card'>
+    <view class='card_top'>
+      <image src='/images/wallet.png' />
+      <text>鲸豆余额：{{info.balance}}</text>
+    </view>
+    <view class='card_btm r'>
+      <text>地址：{{info.ptaddr}}</text>
+    </view>
+  </view>
+
+  <!-- search -->
+  <view class='search'>
+    <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <view class='picker'>
+        <view />
+        <view class='n96'>{{date?date:'选择时间'}}</view>
+        <view class='y'>
+          <wux-icon type='md-arrow-dropdown' />
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- list -->
+  <view class='list'>
+    <view class="item {{index===list.length-1?'item_bd':''}}" wx:for="{{list}}" wx:key="">
+      <view class="item_l {{item.income===0?'nc8':'r'}}">
+        <text>{{item.income===0?'-':'+'}}{{item.value}} 鲸豆</text>
+      </view>
+      <view class='item_r n96'>
+        <text>日期：{{item.date}}</text>
+        <text>{{item.reason}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='tip nc8'>
+    <text wx:if="{{tip_flag===0}}">上拉查看更多</text>
+    <text wx:elif="{{tip_flag===1}}">加载中...</text>
+    <text wx:elif="{{tip_flag===2}}">没有更多了</text>
+  </view>
+
+</view>

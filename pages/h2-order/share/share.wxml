@@ -1,0 +1,47 @@
+<!--pages/h2-order/share/share.wxml-->
+<view class="page">
+
+  <view>
+    <swiper indicator-dots autoplay indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="#fff">
+      <block wx:for="{{order.hotel.cover}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='card'>
+      <view class='card_bar'>
+        <view class='card_bar_l'>
+          <image src='{{avatar}}' />
+          <text>{{order.originorder.occupation}}</text>
+        </view>
+        <view class='card_bar_r'>
+          <text>{{order.postorder.salary}}元/时</text>
+        </view>
+      </view>
+      <view class='card_date'>
+        <text class='card_date_l'>{{order.modifiedorder.length>0?order.modifiedorder.date:order.originorder.date}}</text>
+        <text>{{order.modifiedorder.length>0?order.modifiedorder.time:order.originorder.time}}</text>
+      </view>
+      <view class='card_count'>
+        <view wx:if="{{order.modifiedorder.length>0?(order.modifiedorder[0].changedmode===0):(order.originorder.mode===0)}}">
+          <text class='card_count_l'>人数 {{order.countyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedcount:order.originorder.count}}</text>
+        </view>
+        <view wx:else>
+          <text class='card_count_l'>男 {{order.maleyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedmale:order.originorder.male}}</text>
+          <text>女 {{order.femaleyet}}/{{order.modifiedorder.length>0?order.modifiedorder[0].changedfemale:order.originorder.female}}</text>
+        </view>
+      </view>
+      <view class='card_name'>
+        <text class='card_name_l'>{{order.adviser.companyname}}</text>
+        <view>{{order.adviser.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <button open-type='share'>分享</button>
+    <wux-white-space body-style='height:65rpx' />
+  </view>
+
+</view>

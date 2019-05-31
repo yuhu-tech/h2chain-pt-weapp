@@ -1,0 +1,104 @@
+/* pages/h2-account/info/info.wxss */
+
+page {
+  padding: 0 40rpx;
+  height: 100%;
+}
+
+.page {
+  height: 100%;
+}
+
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer {
+  height: 150rpx;
+}
+
+/* input */
+
+.ipt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: solid 1rpx #eee;
+}
+
+input {
+  padding: 20rpx 0;
+}
+
+.ipt_group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ipt_group_item {
+  width: 300rpx;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 1rpx #eee;
+}
+
+.ipt_group_item_ipt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ipt_group_item_ipt label {
+  color: #c8c8c8;
+}
+
+/* phone */
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.phone button {
+  height: 60rpx;
+  width: 350rpx;
+  margin: 20rpx 0 0;
+}
+
+.phone view {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 39rpx;
+  padding: 0 0 20rpx;
+  border-bottom: solid 1rpx #eee;
+}
+
+/* radio */
+
+.rd {
+  display: flex;
+}
+
+.rd_label {
+  width: 200rpx;
+}
+
+.radio {
+  display: inline-block;
+  width: 200rpx;
+}
+
+/* button */
+
+button {
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+
+picker {
+  padding: 20rpx 0;
+}

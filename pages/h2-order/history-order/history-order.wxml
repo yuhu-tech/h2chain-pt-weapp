@@ -1,0 +1,43 @@
+<!--pages/h2-order/history-order/history-order.wxml-->
+<view class='page'>
+
+  <view class='bar'>
+    <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <view class='picker'>
+        <view></view>
+        <view>{{date?date:'选择工作日期'}}</view>
+        <view class='picker_icon'>
+          <wux-icon type='md-arrow-dropdown' />
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <view class='page'>
+    <wux-white-space body-style="height:120rpx" />
+    <view class='list'>
+      <view class='list_item' wx:for="{{list}}" wx:key="">
+        <view class='list_bar' bindtap='goDetail' data-orderid='{{item.originorder.orderid}}'>
+          <view class='list_bar_l'>
+            <image src='{{item.avatar}}' />
+            <text>{{item.originorder.occupation}}</text>
+          </view>
+          <view class='list_bar_r'>
+            <text>{{item.postorder.salary}}元/时</text>
+            <wux-icon type="ios-arrow-forward" size='20' />
+          </view>
+        </view>
+        <view class='list_res n32'>
+          <wux-cell thumb="/images/hotel-company.png" title="{{item.modifiedorder[0].date||item.originorder.date}} {{item.modifiedorder[0].time||item.originorder.time}}" hover-class="none"></wux-cell>
+          <wux-cell thumb="/images/hotel-adviser.png" title="{{item.hotel.hotelname}}" hover-class="none" />
+          <view class='list_tip n96'>{{item.hotel.hoteladdress}}</view>
+          <view class='list_reason nc8' wx:if="{{item.ptorderstate===5}}">时间变更无法参加</view>
+          <view class='list_reason nc8' wx:elif="{{item.ptorderstate===2}}">被顾问拒绝</view>
+          <view class='list_reason y' wx:else bindtap='goChainInfo' data-hash='{{item.hash}}'>
+            <text>查询凭证：{{item.hash}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

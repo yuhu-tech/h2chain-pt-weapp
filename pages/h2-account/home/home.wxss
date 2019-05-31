@@ -1,0 +1,67 @@
+/* pages/h2-account/home/home.wxss */
+
+page {
+  background: linear-gradient(#f9b552, #f05d70);
+}
+
+.info_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+  border-bottom: solid 1rpx #f0f0f0;
+  background-color: #fff;
+}
+
+.avatar {
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.wux-whitespace {
+  background-color: #f0f0f0;
+}
+
+.logout {
+  text-align: center;
+  margin-top: 50rpx;
+}
+
+.wux-cell-group__bd {
+  margin: 20rpx 0 !important;
+}
+
+.wux-cell-group__bd:after {
+  border: none !important;
+}
+
+.wux-cell {
+  padding: 40rpx !important;
+}
+
+.wux-cell::after {
+  border-bottom: none !important;
+}
+
+.wux-cell__thumb {
+  margin-right: 20rpx !important;
+}
+
+.bd_btm {
+  border-bottom: solid 1rpx #f0f0f0;
+}
+
+/* modify */
+
+.wux-row {
+  background-color: #fff;
+}
+
+.shadow {
+  box-shadow: 0px 4px 4px rgba(238, 61, 84, 0.3);
+}
+
+/* button */

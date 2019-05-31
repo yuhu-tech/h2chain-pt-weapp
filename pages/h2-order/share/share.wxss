@@ -1,0 +1,78 @@
+/* pages/h2-order/share/share.wxss */
+
+page {
+  height: 100%;
+}
+
+/* page */
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* swiper */
+
+swiper {
+  height: 400rpx;
+}
+
+.slide-image {
+  width: 100%;
+}
+
+/* card */
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25rpx 20rpx;
+  padding: 10rpx;
+  background-color: #eee;
+  border-radius: 50rpx;
+}
+
+.card_bar_l {
+  display: flex;
+  align-items: center;
+}
+
+.card_bar_l image {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+
+.card_bar_r text {
+  margin-right: 60rpx;
+}
+
+.card_date, .card_count, .card_name {
+  margin: 0 40rpx 25rpx;
+}
+
+.card_date_l, .card_count_l, .card_name_l {
+  margin-right: 20rpx;
+}
+
+.card_name {
+  display: flex;
+  align-items: center;
+}
+
+/* button */
+
+button {
+  height: 100rpx;
+  width: 670rpx;
+  border-radius: 50rpx;
+}

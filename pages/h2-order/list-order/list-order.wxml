@@ -1,0 +1,75 @@
+<!--pages/h2-order/list-order/list-order.wxml-->
+<guide id="inGuide" />
+
+<view class='page_bd'></view>
+
+<view class='bar_box'>
+  <view class='bar'>
+    <view class='bar_l' bindtap='doChooseLocation'>
+      <view class='bar_img'>
+        <image src='/images/order-location.png' />
+      </view>
+      <view class='bar_lo'>
+        <text>{{location.name?location.name:'离我最近'}}</text>
+      </view>
+    </view>
+    <view class='bar_r'>
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange" start="{{today}}">
+        <view class='picker'>
+          <view></view>
+          <view>{{date?date:'选择用工日期'}}</view>
+          <view class='arrow'>
+            <wux-icon type='md-arrow-dropdown' />
+          </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<view class='page'>
+  <wux-white-space body-style="height:120rpx" />
+  <view class='list'>
+    <view class='list_item' wx:for="{{list}}" wx:key="">
+      <view class='list_bar' bindtap='goOrderInfo' data-orderid='{{item.originorder.orderid}}'>
+        <view class='list_bar_l'>
+          <image src='{{item.avatar}}' />
+          <text>{{item.originorder.occupation}}</text>
+        </view>
+        <view class='list_bar_r'>
+          <text>{{item.postorder.salary}}元/时</text>
+          <wux-icon type="ios-arrow-forward" size='20' />
+        </view>
+      </view>
+      <view class='list_res'>
+        <view class='list_line_1'>
+          <view>
+            <text class='list_line_1_date'>{{item.modifiedorder[0].date||item.originorder.date}}</text>
+            <text>{{item.modifiedorder[0].time||item.originorder.time}}</text>
+          </view>
+          <view>
+            <text>{{item.hotel.hotelname}}</text>
+          </view>
+        </view>
+        <view class='list_line_2'>
+          <view wx:if="{{item.modifiedorder.length>0?(item.modifiedorder[0].changedmode===0):(item.originorder.mode===0)}}">
+            <text>人数 {{item.countyet}}/{{item.modifiedorder[0].changedcount||item.originorder.count}}</text>
+          </view>
+          <view wx:else>
+            <text class='list_line_2_male'>男 {{item.maleyet}}/{{item.modifiedorder[0].changedmale||item.originorder.male}}</text>
+            <text>女 {{item.femaleyet}}/{{item.modifiedorder[0].changedfemale||item.originorder.female}}</text>
+          </view>
+
+        </view>
+        <view class='list_btn'>
+          <form report-submit='true' report-submit-timeout='10000' bindsubmit='goRegister'>
+            <button form-type='submit' data-orderid='{{item.originorder.orderid}}'>
+              <view class='text_btn'>立即报名</view>
+            </button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </view>
+  <wux-white-space body-style="height:130rpx" />
+</view>
