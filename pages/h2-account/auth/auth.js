@@ -111,9 +111,12 @@ Page({
             wx.setStorageSync('share', 'share')
             wx.setStorageSync('orderid', this.data.options.orderid)
             if (this.data.options.sharetype === 'adviser') {
+              console.log('from adviser')
               wx.setStorageSync('sharetype', 'adviser')
             }
             if (this.data.options.sharetype === 'agent') {
+              console.log('from agent')
+              console.log(this.data.options.agentid)
               wx.setStorageSync('sharetype', 'agent')
               wx.setStorageSync('agentid', this.data.options.agentid)
             }

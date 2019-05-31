@@ -199,11 +199,13 @@ Page({
         }
       }`
     }).then(res => {
-      if (res.me.personalmsg) {
+      if (res.me.personalmsg.name) {
         wx.showModal({
           title: '提示',
           content: '确定要报名吗？',
           success: res => {
+            console.log('agentid')
+            console.log(wx.getStorageSync('agentid'))
             if (res.confirm) {
               let type = 1
               switch (wx.getStorageSync('sharetype')) {
@@ -224,7 +226,7 @@ Page({
                       orderid:"${this.data.order.originorder.orderid}"
                       register:1
                       type:${type}
-                      ${wx.getStorageSync('sharetype')==='agent'?`inviterid:${wx.getStorageSync('agentid')}`:''}
+                      ${wx.getStorageSync('sharetype') === 'agent' ? `inviterid:"${wx.getStorageSync('agentid')}"`:''}
                     }
                   ){
                     error
